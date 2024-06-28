@@ -13,13 +13,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import config
-import utils
 import math
+
+import utils
+import config
+
 from components.board import Board
 from components.robot import Robot
 from components.button import Button
 from components.common import Drawable
+
 
 def view(game):
     buttons = []

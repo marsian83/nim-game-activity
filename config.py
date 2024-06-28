@@ -34,12 +34,11 @@ def load_images():
         dir_images = {}
         directory = f"assets/images/{dir}"
         for filename in os.listdir(directory):
-            if filename.endswith(".png") or filename.endswith(".jpg") or filename.endswith(".jpeg"):
-                file_path = os.path.join(directory, filename)
-                try:
-                    image = pygame.image.load(file_path)
-                    base_filename = os.path.splitext(filename)[0]
-                    dir_images[base_filename] = image
-                except pygame.error as err:
-                    print(f"Error loading image '{file_path}': {err}")
+            file_path = os.path.join(directory, filename)
+            try:
+                image = pygame.image.load(file_path)
+                base_filename = os.path.splitext(filename)[0]
+                dir_images[base_filename] = image
+            except pygame.error as err:
+                print(f"Error loading image '{file_path}': {err}")
         images[dir] = dir_images

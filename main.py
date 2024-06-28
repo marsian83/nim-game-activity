@@ -16,11 +16,11 @@
 
 import pygame
 import gi
-gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 import config
 from font import Font 
 from views import game
+
 
 class NimGame:
     def __init__(self):
@@ -70,21 +70,22 @@ class NimGame:
 
         self.bg = config.background_color
         self.set_screen(game.view)
-        # self.help_popup.initialize()
 
-        if not (self.gameDisplay):
+        if not self.gameDisplay:
             self.gameDisplay = pygame.display.set_mode(
                 (self.info.current_w, self.info.current_h))
             pygame.display.set_caption("Nim Gamme Activity")
 
         while self.running:
-            self.gameDisplay.fill(self.bg)
-
-            if self.update_function is not None:
-                self.update_function()
-
             while Gtk.events_pending():
                 Gtk.main_iteration()
+            if not self.running:
+                break
+
+            self.gameDisplay.fill(self.bg)
+
+            if self.update_function:
+                self.update_function()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
